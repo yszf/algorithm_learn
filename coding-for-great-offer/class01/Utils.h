@@ -1,6 +1,7 @@
 #pragma once
 
 #include <algorithm>
+#include <random>
 #include <ctime>
 #include <cassert>
 
@@ -28,7 +29,7 @@ namespace Utils {
 
 	template<typename T>
 	T GetRandom(T min, T max) {
-		static std::default_random_engine engine(static_cast<UINT32>(time(NULL)));
+		static std::default_random_engine engine(static_cast<unsigned int>(time(NULL)));
 		if (min < max) {
 			std::uniform_int_distribution<T> dis(min, max);
 			return dis(engine);

@@ -13,10 +13,23 @@ namespace Class01 {
 
 	class Code01_CordCoverMaxPoint {
 	public:
+		// 暴力方法
+		static int MaxPoint0(std::vector<int> arr, int L) {
+			int max = 0;
+			for (int i = 0; i < static_cast<int>(arr.size()); ++i) {
+				int pre = i - 1;
+				while (pre >= 0 && arr[i] - arr[pre] <= L) {
+					pre--;
+				}
+				max = Utils::Max(max, i - pre);
+			}
+			return max;
+		}
+
 		// L是绳子的长度
 		static int MaxPoint1(std::vector<int> arr, int L) {
 			int res = 0;
-			for (size_t i = 0; i < arr.size(); ++i) {
+			for (int i = 0; i < static_cast<int>(arr.size()); ++i) {
 				int nearest = NearestIndex(arr, i, arr[i] - L);
 				res = Utils::Max(res, i - nearest + 1);
 			}
@@ -42,30 +55,23 @@ namespace Class01 {
 	};
 }
 
-//int main() {
-//	std::vector<int> arr{ 1, 2, 4, 5, 6, 9, 10, 12, 17 };
-//	int L = 4;
-//
-//	int ans = Class01::Code01_CordCoverMaxPoint::MaxPoint1(arr, 4);
-//
-//	std::cout << "res = " << ans << std::endl;
-//
-//	return 0;
-//}
-
-
 int main() {
 	int len = 100;
 	int max = 1000;
-	int test_times = 10;
+	int test_times = 10000;
 	std::cout << "测试开始" << std::endl;
 	Utils::SRandom();
 	for (int i = 0; i < test_times; ++i) {
 		int L = Utils::Random(max);
 		std::vector<int> arr = Utils::GenerateArray(len, max);
+		int ans0 = Class01::Code01_CordCoverMaxPoint::MaxPoint0(arr, L);
 		int ans1 = Class01::Code01_CordCoverMaxPoint::MaxPoint1(arr, L);
-		std::cout << "ans1 = " << ans1 << std::endl;
+		if (ans0 != ans1) {
+			std::cout << "error!" << std::endl;
+			break;
+		}
 	}
+	std::cout << "测试通过" << std::endl;
 
 	return 0;
 }
