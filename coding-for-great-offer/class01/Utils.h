@@ -2,6 +2,7 @@
 
 #include <algorithm>
 #include <ctime>
+#include <cassert>
 
 namespace Utils {
 
@@ -9,16 +10,33 @@ namespace Utils {
 		return a > b ? a : b;
 	}
 
-	// 取得 [0, x)之间的随机整数
-	int Random(int x) {
+	void SRandom() {
 		srand((unsigned int)time(nullptr));
-		return rand() % x;
+	}
+
+	// 取得 [0, x)之间的随机整数
+	int Random(int n) {
+		assert(n > 0);
+		return rand() % n;
 	}
 
 	// 取得 [x, y]之间的随机整数
-	int Random(int x, int y) {
-		srand((unsigned int)time(nullptr));
-		return (rand() % (y - x + 1)) + x;
+	int Random(int left, int right) {
+		assert(left > 0 && left < right);
+		return (rand() % (right - left + 1)) + left;
+	}
+
+	template<typename T>
+	T GetRandom(T min, T max) {
+		static std::default_random_engine engine(static_cast<UINT32>(time(NULL)));
+		if (min < max) {
+			std::uniform_int_distribution<T> dis(min, max);
+			return dis(engine);
+		}
+		else {
+			std::uniform_int_distribution<T> dis(max, min);
+			return dis(engine);
+		}
 	}
 
 	std::vector<int> GenerateArray(int len, int max) {

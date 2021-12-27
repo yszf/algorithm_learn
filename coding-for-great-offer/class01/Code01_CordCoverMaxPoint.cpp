@@ -57,8 +57,9 @@ namespace Class01 {
 int main() {
 	int len = 100;
 	int max = 1000;
-	int test_times = 10000;
+	int test_times = 10;
 	std::cout << "²âÊÔ¿ªÊ¼" << std::endl;
+	Utils::SRandom();
 	for (int i = 0; i < test_times; ++i) {
 		int L = Utils::Random(max);
 		std::vector<int> arr = Utils::GenerateArray(len, max);
