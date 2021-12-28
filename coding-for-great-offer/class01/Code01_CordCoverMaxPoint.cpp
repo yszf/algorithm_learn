@@ -35,6 +35,21 @@ namespace Class01 {
 			}
 			return res;
 		}
+
+		static int MaxPoint2(std::vector<int> arr, int L) {
+			int left, right;
+			left = right = 0;
+			int N = static_cast<int>(arr.size());
+			int max = 0;
+			while (left < N) {
+				while (right < N && arr[right] - arr[left] <= L) {
+					right++;
+				}
+				max = Utils::Max(max, right - (left++));
+			}
+			return max;
+		}
+
 		// R是数组的下标，作为绳子的末尾
 		// 二分查找距value最近的数组元素下标
 		static int NearestIndex(std::vector<int> arr, int R, int value) {
@@ -66,7 +81,8 @@ int main() {
 		std::vector<int> arr = Utils::GenerateArray(len, max);
 		int ans0 = Class01::Code01_CordCoverMaxPoint::MaxPoint0(arr, L);
 		int ans1 = Class01::Code01_CordCoverMaxPoint::MaxPoint1(arr, L);
-		if (ans0 != ans1) {
+		int ans2 = Class01::Code01_CordCoverMaxPoint::MaxPoint2(arr, L);
+		if (ans0 != ans1 || ans1 != ans2) {
 			std::cout << "error!" << std::endl;
 			break;
 		}
