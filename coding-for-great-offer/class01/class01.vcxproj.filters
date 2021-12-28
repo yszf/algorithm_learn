@@ -18,6 +18,12 @@
     <ClCompile Include="Code01_CordCoverMaxPoint.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Code02_CountFiles.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Code03_Near2Power.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Utils.h">

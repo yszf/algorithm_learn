@@ -140,6 +140,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Code01_CordCoverMaxPoint.cpp" />
+    <ClCompile Include="Code02_CountFiles.cpp" />
+    <ClCompile Include="Code03_Near2Power.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Utils.h" />
