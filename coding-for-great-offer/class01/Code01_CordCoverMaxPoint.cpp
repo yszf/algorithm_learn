@@ -70,7 +70,7 @@ namespace Class01 {
 	};
 }
 
-int main() {
+int main01() {
 	int len = 100;
 	int max = 1000;
 	int test_times = 10000;
